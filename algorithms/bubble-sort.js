@@ -1,6 +1,5 @@
 async function bubbleSort() {
     for (let i = 0; i < size - 1; i++) {
-        // let swapped = false;
         for (let j = 0; j < size - 1 - i; j++) {
             list[j].bar.className = "purple";
             list[j + 1].bar.className = "purple";
@@ -10,7 +9,6 @@ async function bubbleSort() {
                 let tmp = list[j];
                 list[j] = list[j + 1];
                 list[j + 1] = tmp;
-                // swapped = true;
                 render();
                 await pause(delay);
             }

@@ -13,7 +13,6 @@ async function selectionSort() {
                 if (min != i)
                     list[min].bar.className = "bar";
                 min = j;
-                // list[min].bar.className = "pink";
             }
             else {
                 list[j].bar.className = "bar";

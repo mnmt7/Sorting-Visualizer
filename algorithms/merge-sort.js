@@ -37,7 +37,7 @@ async function merge(low, mid, high) {
             await pause(delay);
 
             sortedPart.push(left[l]);
-            let newList = remainingPart_left.concat(sortedPart, left.slice(l + 1), right.slice(r), remainingPart_right );
+            let newList = remainingPart_left.concat(sortedPart, left.slice(l + 1), right.slice(r), remainingPart_right);
             list = newList;
             
             right[r].bar.className = "pink";

@@ -1,7 +1,7 @@
 <html>
 
-<head>
-  <link rel="stylesheet" href="index.css">
+  <head>
+    <link rel="stylesheet" href="index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Staatliches&display=swap" rel="stylesheet">
@@ -10,35 +10,43 @@
   </title>
 </head>
 
-<header>
-  <div class="title">
-    <span class="title-1">Sorting</span>
-    <span class="title-2">Visualizer</span>
-  </div>  
-  <div class="buttons">
-    <div>
-      <button id="merge-sort-btn">Merge Sort</button>
-      <button id="selection-sort-btn">Selection Sort</button>
-      <button id="bubble-sort-btn">Bubble Sort</button>
-      <button id="insertion-sort-btn">Insertion Sort</button>
-      <button id="quick-sort-btn">Quick Sort</button>
-      <button id="heap-sort-btn">Heap Sort</button>
-    </div>
-    <div>
-      <button id="generate-new-array">Generate New Array</button>
-      Speed:
-      <button id="decrease-speed-btn">&lt;</button>
-      <button id="increase-speed-btn">&gt;</button>
-      <span id="size-label">Size: </span>
-      <button id="decrease-size-btn">-</button>
-      <button id="increase-size-btn">+</button>
-    </div>
-  </header>
 
 <body>
-    <div id="canvas" class="canvas"></div>
-</body>
+  <header>
+    <div class="title">
+      <span class="title-1">Sorting</span>
+      <span class="title-2">Visualizer</span>
+    </div>  
+    <div class="buttons">
+      <div>
+        <button id="merge-sort-btn">Merge Sort</button>
+        <button id="selection-sort-btn">Selection Sort</button>
+        <button id="bubble-sort-btn">Bubble Sort</button>
+        <button id="insertion-sort-btn">Insertion Sort</button>
+        <button id="quick-sort-btn">Quick Sort</button>
+        <button id="heap-sort-btn">Heap Sort</button>
+      </div>
+      <div>
+        Generate array:
+        <button class="someButton" id="generate-new-array">Random</button>
+        <button id="generate-ns-array"> Nearly Sorted </button>
+        <button id="generate-rev-array">Reversed</button>
+        Speed:
+        <button id="decrease-speed-btn">&lt;</button>
+        <button id="increase-speed-btn">&gt;</button>
+        <span id="size-label">Size: </span>
+        <button id="decrease-size-btn">-</button>
+        <button id="increase-size-btn">+</button>
+      </div>
+    </div>
+    <span class="info"  id="random-text">💡&nbsp;Why random array? <br><br> A random initial order is used to evaluate sorting algorithms in order to show the “typical” case.</span>
+    <span class="info info-2"  id="almost-sorted-text">💡&nbsp;Why nearly sorted array? <br> <br>In case of almost sorted array, we can see insertion sort is the fastest algorithm. 
+      <br> Bubble sort is also quite efficient for this case.<br>But merge sort and quick sort fail to adapt to this and take order of nlogn time.</span>
+    <span class="info"  id="reversed-text">💡&nbsp;Why reversed array? <br><br> Reversed array actually brings out the worse-case behavior for insertion sort and bubble sort.</span>
+  </header>
 
+  <div id="canvas" class="canvas"></div>
+</body>
 <script src="index.js"></script>
 <script src="algorithms/merge-sort.js"></script>
 <script src="algorithms/selection-sort.js"></script>

@@ -2,13 +2,13 @@ function randomRange(min, max) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
 }
 
-function generateList (size, minLen, maxLen) {
+function generateList(size, minLen, maxLen) {
     let newList = [];
     let i = 0;
     while (i < size) {
         const len = randomRange(minLen, maxLen);   
         const bar = document.createElement('div');
-
+        
         bar.className = "bar";
         bar.style.height = len;
         
@@ -32,6 +32,29 @@ function pause(time) {
     return p;
 }
 
+function generateNearlySorted(size, minLen, maxLen) {
+    generateList(size, minLen, maxLen);
+    list.sort((a, b) => a.val - b.val);
+    const set = new Set();
+    for (let i = 0; i < size - 6; i++) {
+        const x = randomRange(i, i + 5);   
+        if (set.has(x)) 
+            continue;
+
+        set.add(x);
+        let tmp = list[i];
+        list[i] = list[x];
+        list[x] = tmp;
+    }
+
+    render();
+}
+
+function generateReverse(size, minLen, maxLen) {
+    generateList(size, minLen, maxLen);
+    list.sort((a, b) => b.val - a.val);
+    render();
+}
 function render() {
     let canvas = document.getElementById('canvas');
     canvas.innerText = '';
@@ -125,6 +148,8 @@ function disableButtons(flag) {
     document.getElementById("increase-size-btn").disabled = flag;
     document.getElementById("decrease-size-btn").disabled = flag;
     document.getElementById("generate-new-array").disabled = flag;
+    document.getElementById("generate-ns-array").disabled = flag;
+    document.getElementById("generate-rev-array").disabled = flag;
     
     document.getElementById("merge-sort-btn").style.opacity = flag ? 0.5 : 1;
     document.getElementById("selection-sort-btn").style.opacity = flag ? 0.5 : 1;
@@ -135,6 +160,8 @@ function disableButtons(flag) {
     document.getElementById("increase-size-btn").style.opacity = flag ? 0.5 : 1;
     document.getElementById("decrease-size-btn").style.opacity = flag ? 0.5 : 1;
     document.getElementById("generate-new-array").style.opacity = flag ? 0.5 : 1;
+    document.getElementById("generate-ns-array").style.opacity = flag ? 0.5 : 1;
+    document.getElementById("generate-rev-array").style.opacity = flag ? 0.5 : 1;
     document.getElementById("size-label").style.opacity = flag ? 0.5 : 1;
 }
 
@@ -148,9 +175,30 @@ document.getElementById("increase-speed-btn").addEventListener("click", increase
 document.getElementById("decrease-speed-btn").addEventListener("click", decreaseSpeed);
 document.getElementById("increase-size-btn").addEventListener("click", increaseSize);
 document.getElementById("decrease-size-btn").addEventListener("click", decreaseSize);
-document.getElementById("generate-new-array").addEventListener("click", () => generateList(size, minLen, maxLen));
+document.getElementById("generate-new-array").addEventListener("click", () => {generateList(size, minLen, maxLen); removeStyle("random-text");});
+document.getElementById("generate-ns-array").addEventListener("click", () => {generateNearlySorted(size, minLen, maxLen); removeStyle("almost-sorted-text");});
+document.getElementById("generate-rev-array").addEventListener("click", () => {generateReverse(size, minLen, maxLen); removeStyle("reversed-text");});
 
 let size = 60, minLen = 20, maxLen = 350;
 let list = [];
 generateList(size, minLen, maxLen);
 let delay = 0.1;
+
+document.getElementById("generate-new-array").addEventListener("mouseover", () => addStyle("random-text"));
+document.getElementById("generate-new-array").addEventListener("mouseout", () => removeStyle("random-text"));
+
+document.getElementById("generate-ns-array").addEventListener("mouseover", () => addStyle("almost-sorted-text"));
+document.getElementById("generate-ns-array").addEventListener("mouseout", () => removeStyle("almost-sorted-text"));
+
+document.getElementById("generate-rev-array").addEventListener("mouseover", () => addStyle("reversed-text"));
+document.getElementById("generate-rev-array").addEventListener("mouseout", () => removeStyle("reversed-text"));
+
+const addStyle = (id) => {
+    document.getElementById(id).classList.add("someStyle");
+    document.getElementById("canvas").classList.add("make-transparent");
+};
+
+const removeStyle = (id) => {
+    document.getElementById(id).classList.remove("someStyle");
+    document.getElementById("canvas").classList.remove("make-transparent");
+};

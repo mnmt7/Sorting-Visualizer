@@ -14,6 +14,7 @@ header {
 }
 
 .title-1 {
+    /* position: absolute; */
     font-family: 'Dancing Script', cursive;
     font-size: 63px;
     color: rgb(228, 98, 98);
@@ -42,7 +43,10 @@ body {
     justify-content: center;
     align-items: flex-end;
     height: 390px;
-    
+}
+
+.make-transparent {
+   opacity: 0.5; 
 }
 
 .buttons {
@@ -68,6 +72,10 @@ button {
     margin: 0px 5px;
 }
 
+button:hover {
+    background-color:#3CB9FC;
+}
+
 .bar, .purple, .blue, .pink {
     display: inline-block;
     margin: 27px 0px 7px 7px;
@@ -88,5 +96,34 @@ button {
 }
 
 .pink {
-    background-color: rgb(228, 98, 98);
+    background-color: #e46262;
+}
+
+.info {
+    visibility: hidden;
+
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    
+    height: 85px;
+    width: 620px;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    background-color: lightblue;
+    color: black;
+    border-style:dashed;
+    border-radius: 6px;
+    z-index: 1; 
+    padding: 10px;
+    text-align: left;
+}
+
+.someStyle {
+    visibility: visible;
+}
+
+.info-2 {
+    height: 150px;
 }
